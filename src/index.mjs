@@ -13,7 +13,7 @@ export default function(url, options) {
 			url: request.responseURL,
 			text: () => Promise.resolve(request.responseText),
 			json: () => Promise.resolve(JSON.parse(request.responseText)),
-			blob: () => Promise.resolve(new Blob([request.response])),
+			blob: (type) => Promise.resolve(new Blob([request.response], { type })),
 			clone: response,
 			headers: {
 				keys: () => keys,
