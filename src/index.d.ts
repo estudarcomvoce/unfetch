@@ -12,6 +12,10 @@ declare namespace unfetch {
   export type IsomorphicRequest = Request | NodeRequest
 }
 
-declare const unfetch: typeof fetch;
+declare class TypedResponse<T> extends Response {
+  json(): Promise<T>
+}
+
+declare function unfetch<T = any>(input: RequestInfo, init?: RequestInit): Promise<TypedResponse<T>>;
 
 export default unfetch;
